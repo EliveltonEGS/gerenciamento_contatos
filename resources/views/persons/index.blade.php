@@ -27,7 +27,13 @@
                 <th scope="row">{{ $person->id }}</th>
                 <td>{{ $person->name }}</td>
                 <td>{{ $person->email }}</td>
-                <td>{{ $person->avatar_url ?? '--' }}</td>
+                <td>
+                    <img 
+                        src="{{ asset('storage/' . $person->avatar_url) }}" 
+                        alt="Avatar"
+                        width="50"
+                    >
+                </td>
                 <td>
                     <div class="d-flex gap-2">
                         <a href="{{ route('persons.show', $person->id) }}" class="btn btn-warning">Show</a>

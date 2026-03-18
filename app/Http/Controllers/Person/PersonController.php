@@ -84,12 +84,10 @@ class PersonController extends Controller
 
     public function destroy(Person $person): RedirectResponse
     {
-        return $this->deletePersonUseCase->execute($person->id)
-            ? redirect()
+        $this->deletePersonUseCase->execute($person->id);
+
+        return redirect()
             ->route('persons.index')
-            ->with('success', 'Person deleted successfully.')
-            : redirect()
-            ->back()
-            ->with('error', 'Failed delete person.');
+            ->with('success', 'Person deleted successfully.');
     }
 }

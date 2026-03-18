@@ -12,7 +12,11 @@
         <label>Email: {{ $person->email }}</label>
     </div>
     <div class="mb-3">
-        <label>Image: {{ $person->image_url ?? '--' }}</label>
+        <img 
+            src="{{ asset('storage/' . $person->avatar_url) }}" 
+            alt="Avatar"
+            width="100"
+        >
     </div>
     <div class="mb-3 d-flex gap-2">
         <a 
