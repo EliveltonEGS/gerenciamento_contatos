@@ -9,9 +9,6 @@
         <label>Name: {{ $person->name }}</label>
     </div>
     <div class="mb-3">
-        <label>Email: {{ $person->email }}</label>
-    </div>
-    <div class="mb-3">
         <img 
             src="{{ asset('storage/' . $person->avatar_url) }}" 
             alt="Avatar"

@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('persons', function (Blueprint $table) {
             $table->id();
             $table->string('name', 100);
-            $table->string('email', 100)->unique();
             $table->string('avatar_url', 100)->nullable();
             $table->timestamps();
             $table->softDeletes();

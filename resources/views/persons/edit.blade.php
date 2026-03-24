@@ -23,18 +23,6 @@
             @enderror
         </div>
         <div class="mb-3">
-            <label>Email: </label>
-            <input 
-                type="text" 
-                name="email"
-                class="form-control"  
-                value="{{ old('email', $person->email) }}"
-            >
-            @error('email')
-                <div class="text-danger">{{ $message }}</div>
-            @enderror
-        </div>
-        <div class="mb-3">
             <button type="submit" class="btn btn-primary">Save</button>
         </div>
     </form>

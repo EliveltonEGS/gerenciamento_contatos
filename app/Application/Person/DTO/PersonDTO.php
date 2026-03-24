@@ -9,7 +9,6 @@ class PersonDTO
     public function __construct(
         public readonly ?int $id,
         public readonly string $name,
-        public readonly string $email,
         public ?string $avatar_url,
     ) {}
 
@@ -18,7 +17,6 @@ class PersonDTO
         return new self(
             id: $id,
             name: $data['name'],
-            email: $data['email'],
             avatar_url: $data['avatar_url'] ?? null
         );
     }
@@ -28,7 +26,6 @@ class PersonDTO
         return new Person(
             id: $this->id,
             name: $this->name,
-            email: $this->email,
             avatar_url: $this->avatar_url
         );
     }

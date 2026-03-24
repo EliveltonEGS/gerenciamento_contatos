@@ -3,7 +3,6 @@
 namespace App\Http\Requests\Person;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class PersonFormRequest extends FormRequest
 {
@@ -22,19 +21,11 @@ class PersonFormRequest extends FormRequest
      */
     public function rules(): array
     {
-        $person = $this->route('person');
-
         return [
             'name' => [
                 'required',
                 'min:6',
                 'max:100'
-            ],
-            'email' => [
-                'required',
-                'email',
-                'max:100',
-                Rule::unique('persons', 'email')->ignore($person)
             ]
         ];
     }

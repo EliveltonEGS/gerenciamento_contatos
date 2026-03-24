@@ -21,7 +21,6 @@ class CreatePersonUseCase
         $currentPerson = $this->personService->create(
             [
                 'name' => $person->getName(),
-                'email' => $person->getEmail(),
                 'avatar_url' => $person->getAvatarUrl()
             ]
         );
@@ -29,7 +28,6 @@ class CreatePersonUseCase
         return new Person(
             $currentPerson->id,
             $currentPerson->name,
-            $currentPerson->email,
             $currentPerson->avatar_url
         );
     }

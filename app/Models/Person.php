@@ -12,7 +12,6 @@ class Person extends Model
     protected $table = 'persons';
     protected $fillable = [
         'name',
-        'email',
         'avatar_url'
     ];
 }

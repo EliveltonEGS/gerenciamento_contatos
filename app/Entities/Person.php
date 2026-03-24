@@ -7,7 +7,6 @@ class Person
     public function __construct(
         private ?int $id,
         private string $name,
-        private string $email,
         private ?string $avatar_url,
     ) {}
 
@@ -19,11 +18,6 @@ class Person
     public function getName(): string
     {
         return $this->name;
-    }
-
-    public function getEmail(): string
-    {
-        return $this->email;
     }
 
     public function getAvatarUrl(): ?string
@@ -39,11 +33,6 @@ class Person
     public function setName(string $name): void
     {
         $this->name = $name;
-    }
-
-    public function setEmail(string $email): void
-    {
-        $this->email = $email;
     }
 
     public function setAvatarUrl(string $avatar_url): void

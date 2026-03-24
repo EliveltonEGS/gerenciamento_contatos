@@ -16,7 +16,6 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
-                <th scope="col">Email</th>
                 <th scope="col">Image</th>
                 <th >Actions</th>
             </tr>
@@ -26,7 +25,6 @@
                 <tr>
                 <th scope="row">{{ $person->id }}</th>
                 <td>{{ $person->name }}</td>
-                <td>{{ $person->email }}</td>
                 <td>
                     <img 
                         src="{{ asset('storage/' . $person->avatar_url) }}" 
@@ -48,7 +46,7 @@
             </tr>
             @empty
                 <tr>
-                    <td colspan="5">Empty persons.</td>
+                    <td colspan="4">Empty persons.</td>
                 </tr>
             @endforelse
         </tbody>
