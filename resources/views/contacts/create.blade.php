@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Create</h1>
+    <h1>Create Contact</h1>
     @if (session()->has('success'))
         <div class="alert alert-success" role="alert">
             {{ session()->get('success') }}
@@ -10,16 +10,27 @@
     <form action="{{ route('contacts.store') }}" method="POST">
         @csrf
         <div class="mb-3">
-            <label>Name: </label>
-            <input type="text" name="name" class="form-control" value="{{ old('name') }}">
-            @error('name')
+            <label>Person: </label>
+            <select class="form form-control" name="person_id">
+                <option value="">--</option>
+                @foreach ($persons as $item)
+                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                @endforeach
+            </select>
+            @error('person_id')
                 <div class="text-danger">{{ $message }}</div>
             @enderror
         </div>
         <div class="mb-3">
-            <label>Contact:</label>
-            <input type="text" name="contact" class="form-control" value="{{ old('contact') }}">
-            @error('contact')
+            <label>Phone:</label>
+            <div class="d-flex gap-2">
+                <input style="width: 80px" type="text" name="ddd" class="form-control" value="{{ old('ddd') }}" placeholder="DDD">
+                <input type="text" name="number" class="form-control" value="{{ old('number') }}" placeholder="Number">
+            </div>
+            @error('ddd')
+                <div class="text-danger">{{ $message }}</div>
+            @enderror
+            @error('number')
                 <div class="text-danger">{{ $message }}</div>
             @enderror
         </div>

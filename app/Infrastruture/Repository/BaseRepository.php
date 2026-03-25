@@ -14,7 +14,7 @@ abstract class BaseRepository implements BaseRepositoyInterface
 
     public function all(): LengthAwarePaginator
     {
-        return $this->model->orderBy('id', 'desc')->paginate(5);
+        return $this->model->orderBy('id')->paginate(5);
     }
 
     public function find(int $id): ?Model

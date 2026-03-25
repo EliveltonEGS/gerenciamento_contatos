@@ -7,12 +7,12 @@ use App\Entities\Person;
 class PersonDTO
 {
     public function __construct(
-        public readonly ?int $id,
+        public readonly ?string $id,
         public readonly string $name,
         public ?string $avatar_url,
     ) {}
 
-    public static function makeFromArray(array $data, ?int $id = null): self
+    public static function makeFromArray(array $data, ?string $id = null): self
     {
         return new self(
             id: $id,

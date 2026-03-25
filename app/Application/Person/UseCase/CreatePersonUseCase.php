@@ -5,6 +5,7 @@ namespace App\Application\Person\UseCase;
 use App\Domain\Person\Services\AvatarService;
 use App\Domain\Person\Services\PersonService;
 use App\Entities\Person;
+use Illuminate\Support\Str;
 
 class CreatePersonUseCase
 {
@@ -20,6 +21,7 @@ class CreatePersonUseCase
 
         $currentPerson = $this->personService->create(
             [
+                'id' => Str::uuid()->toString(),
                 'name' => $person->getName(),
                 'avatar_url' => $person->getAvatarUrl()
             ]

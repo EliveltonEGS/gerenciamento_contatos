@@ -3,7 +3,7 @@
 namespace App\Application\Person\UseCase;
 
 use App\Domain\Person\Services\PersonService;
-use App\Models\Person;
+use App\Entities\Person;
 
 class FindPersonUseCase
 {
@@ -13,6 +13,12 @@ class FindPersonUseCase
 
     public function execute(int $id): Person
     {
-        return $this->personService->find($id);
+        $person = $this->personService->find($id);
+
+        return new Person(
+            $person->id,
+            $person->name,
+            $person->avatar_url
+        );
     }
 }

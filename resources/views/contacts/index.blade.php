@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>List</h1>
+    <h1>List Contacts</h1>
     
     <div class="mt-2 mb-2">
         <a href="{{ route('contacts.create') }}" class="btn btn-info">New</a>
@@ -16,7 +16,8 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
-                <th scope="col">Contact</th>
+                <th scope="col">DDD</th>
+                <th scope="col">Number</th>
                 <th scope="col">Email</th>
                 <th >Actions</th>
             </tr>
@@ -25,8 +26,9 @@
             @forelse ($data as $item)
             <tr>
                 <th scope="row">{{ $item->id }}</th>
-                <td>{{ $item->name }}</td>
-                <td>{{ $item->contact }}</td>
+                <td>{{ $item->person->name }}</td>
+                <td>{{ $item->ddd }}</td>
+                <td>{{ $item->number }}</td>
                 <td>{{ $item->email }}</td>
                 <td>
                     <div class="d-flex gap-2">
@@ -42,7 +44,7 @@
             </tr>
             @empty
             <tr>
-            <td colspan="5">Empty contacts.</td> 
+            <td colspan="6">Empty contacts.</td> 
             </tr>
             @endforelse
         </tbody>

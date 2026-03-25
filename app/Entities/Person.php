@@ -4,13 +4,21 @@ namespace App\Entities;
 
 class Person
 {
-    public function __construct(
-        private ?int $id,
-        private string $name,
-        private ?string $avatar_url,
-    ) {}
+    private ?string $id;
+    private ?string $name;
+    private ?string $avatar_url;
 
-    public function getId(): ?int
+    public function __construct(
+        ?string $id = null,
+        ?string $name = null,
+        ?string $avatar_url = null
+    ) {
+        $this->id = $id;
+        $this->name = $name;
+        $this->avatar_url = $avatar_url;
+    }
+
+    public function getId(): ?string
     {
         return $this->id;
     }
@@ -25,7 +33,7 @@ class Person
         return $this->avatar_url;
     }
 
-    public function setId(?int $id): void
+    public function setId(?string $id): void
     {
         $this->id = $id;
     }
@@ -35,7 +43,7 @@ class Person
         $this->name = $name;
     }
 
-    public function setAvatarUrl(string $avatar_url): void
+    public function setAvatarUrl(?string $avatar_url): void
     {
         $this->avatar_url = $avatar_url;
     }

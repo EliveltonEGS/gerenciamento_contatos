@@ -7,7 +7,7 @@
             {{ session()->get('success') }}
         </div>
     @endif
-    <form action="{{ route('persons.update', $person->id) }}" method="POST">
+    <form action="{{ route('persons.update', $person->getId()) }}" method="POST">
         @csrf
         @method('PUT')
         <div class="mb-3">
@@ -16,7 +16,7 @@
                 name="name"
                 id="name"
                 class="form-control"
-                value="{{ old('name', $person->name) }}"
+                value="{{ old('name', $person->getName()) }}"
             >
             @error('name')
                 <div class="text-danger">{{ $message }}</div>
