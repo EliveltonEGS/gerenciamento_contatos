@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Application\Person\DTO;
+namespace App\DTO\Person;
 
 use App\Entities\Person;
 

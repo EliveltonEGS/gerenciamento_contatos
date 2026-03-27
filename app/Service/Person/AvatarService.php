@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Person\Services;
+namespace App\Service\Person;
 
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;

@@ -2,33 +2,22 @@
 
 namespace App\Http\Controllers\Person;
 
-use App\Application\Person\DTO\PersonDTO;
-use App\Application\Person\UseCase\{
-    CreatePersonUseCase,
-    DeletePersonUseCase,
-    FindPersonUseCase,
-    GetAllPersonUseCase,
-    UpdatePersonUseCase
-};
+use App\DTO\Person\PersonDTO;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Person\PersonFormRequest;
-use App\Models\Person;
+use App\Service\Person\PersonService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
 class PersonController extends Controller
 {
     public function __construct(
-        private GetAllPersonUseCase $getAllPersonUsecase,
-        private CreatePersonUseCase $createPersonUseCase,
-        private FindPersonUseCase $findPersonUseCase,
-        private UpdatePersonUseCase $updatePersonUseCase,
-        private DeletePersonUseCase $deletePersonUseCase
+        private PersonService $personService
     ) {}
 
     public function index(): View
     {
-        $persons = $this->getAllPersonUsecase->execute();
+        $persons = $this->personService->paginate(5);
         return view('persons.index', compact('persons'));
     }
 
@@ -40,38 +29,38 @@ class PersonController extends Controller
     public function store(PersonFormRequest $request): RedirectResponse
     {
         $dto = PersonDTO::makeFromArray($request->validated());
-        $this->createPersonUseCase->execute($dto->toEntity());
+        $this->personService->save($dto);
 
         return redirect()
             ->back()
             ->with('success', 'Person created successfully.');
     }
 
-    public function show(Person $person): View
+    public function show(int $id): View
     {
-        $person = $this->findPersonUseCase->execute($person->id);
+        $person = $this->personService->findById($id);
         return view('persons.show', compact('person'));
     }
 
-    public function edit(Person $person): View
+    public function edit(int $id): View
     {
-        $person = $this->findPersonUseCase->execute($person->id);
+        $person = $this->personService->findById($id);
         return view('persons.edit', compact('person'));
     }
 
-    public function  update(PersonFormRequest $request, Person $person): RedirectResponse
+    public function  update(PersonFormRequest $request, int $id): RedirectResponse
     {
-        $dto = PersonDTO::makeFromArray($request->validated(), $person->id);
-        $this->updatePersonUseCase->execute($dto->toEntity());
+        $dto = PersonDTO::makeFromArray($request->validated(), $id);
+        $this->personService->update($dto);
 
         return redirect()
             ->back()
             ->with('success', 'Person updated successfully.');
     }
 
-    public function destroy(Person $person): RedirectResponse
+    public function destroy(int $id): RedirectResponse
     {
-        $this->deletePersonUseCase->execute($person->id);
+        $this->personService->delete($id);
 
         return redirect()
             ->route('persons.index')
