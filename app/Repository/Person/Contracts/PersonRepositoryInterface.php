@@ -8,7 +8,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 interface PersonRepositoryInterface
 {
-    public function paginate(string $name = '', string $order = '', int $perPage = 15): LengthAwarePaginator;
+    public function paginate(string $name = '', string $order = '', int $perPage): LengthAwarePaginator;
     public function findById(int $id): ?Person;
     public function save(Person $person): Person;
     public function delete(int $id): void;

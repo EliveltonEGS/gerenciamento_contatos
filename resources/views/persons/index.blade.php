@@ -6,6 +6,13 @@
     <div class="mt-2 mb-2">
         <form method="GET" action="{{ route('persons.index') }}">
             <div class="d-flex gap-2">
+                <label>Per Page:</label>
+                <select class="form-control" name="per_page">
+                    <option value="">--</option>
+                    <option value="5" {{ request('per_page') == '5' ? 'selected' : '' }}>5</option>
+                    <option value="10" {{ request('per_page') == '10' ? 'selected' : '' }}>10</option>
+                    <option value="50" {{ request('per_page') == '50' ? 'selected' : '' }}>50</option>
+                </select>
                 <label>Order by:</label>
                 <select class="form-control" name="order">
                     <option value="">--</option>

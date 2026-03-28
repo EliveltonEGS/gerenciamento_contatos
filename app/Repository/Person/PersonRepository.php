@@ -15,7 +15,7 @@ class PersonRepository implements PersonRepositoryInterface
         private PersonModel $personModel
     ) {}
 
-    public function paginate(string $name = '', string $order = '', int $perPage = 15): LengthAwarePaginator
+    public function paginate(string $name = '', string $order = '', int $perPage): LengthAwarePaginator
     {
         return $this->personModel
             ->when($name, fn ($q) =>
