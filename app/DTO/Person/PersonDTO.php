@@ -8,16 +8,20 @@ class PersonDTO
 {
     public function __construct(
         public readonly ?string $id,
-        public readonly string $name,
+        public readonly ?string $name,
         public ?string $avatar_url,
+
+        public readonly ?string $order
     ) {}
 
     public static function makeFromArray(array $data, ?string $id = null): self
     {
         return new self(
             id: $id,
-            name: $data['name'],
-            avatar_url: $data['avatar_url'] ?? null
+            name: $data['name'] ?? '',
+            avatar_url: $data['avatar_url'] ?? null,
+
+            order: $data['order'] ?? ''
         );
     }
 

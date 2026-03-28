@@ -6,7 +6,14 @@
     <div class="mt-2 mb-2">
         <form method="GET" action="{{ route('persons.index') }}">
             <div class="d-flex gap-2">
-                <input class="form-control" type="text" name="name" placeholder="Pesquisar por nome">
+                <label>Order by:</label>
+                <select class="form-control" name="order">
+                    <option value="">--</option>
+                    <option value="asc" {{ request('order') == 'asc' ? 'selected' : '' }}>Ascending</option>
+                    <option value="desc" {{ request('order') == 'desc' ? 'selected' : '' }}>Descendant</option>
+                </select>
+                <label>Filter by:</label>
+                <input class="form-control" type="text" name="name" value="{{ request('name') }}" placeholder="Pesquisar por nome">
                 <button class="btn btn-primary" type="submit">Buscar</button>
                 <a href="{{ route('persons.create') }}" class="btn btn-info">New</a>
             </div>

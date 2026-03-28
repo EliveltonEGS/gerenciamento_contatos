@@ -15,9 +15,14 @@ class PersonRepository implements PersonRepositoryInterface
         private PersonModel $personModel
     ) {}
 
-    public function paginate(int $perPage = 15): LengthAwarePaginator
+    public function paginate(string $name = '', string $order = '', int $perPage = 15): LengthAwarePaginator
     {
-        return $this->personModel->paginate($perPage);
+        return $this->personModel
+            ->when($name, fn ($q) =>
+                $q->where('name', 'like', "%{$name}%")
+            )
+            ->orderBy('name', $order)
+            ->paginate($perPage);
     }
 
     public function findById(int $id): ?Person
@@ -65,13 +70,5 @@ class PersonRepository implements PersonRepositoryInterface
     public function all(): Collection
     {
         return $this->personModel->orderBy('name')->get();
-    }
-
-    public function search(Person $person, int $perPage = 15): LengthAwarePaginator
-    {
-        return $this->personModel
-            ->where('name', 'like', '%' . $person->getName() . '%')
-            ->orderBy('name')
-            ->paginate($perPage);
     }
 }

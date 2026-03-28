@@ -18,10 +18,11 @@ class PersonController extends Controller
 
     public function index(Request $request): View
     {
-        $dto = PersonDTO::makeFromArray($request->only('name'));
-        $persons = $request->filled('name')
-            ? $this->personService->search($dto, 5)
-            : $this->personService->paginate(5);
+        $persons = $this->personService->paginate(
+            name: (string) $request->get('name', ''),
+            order: in_array($request->get('order'), ['asc', 'desc']) ? $request->get('order') : 'asc',
+            perPage: 5
+        );
 
         return view('persons.index', compact('persons'));
     }

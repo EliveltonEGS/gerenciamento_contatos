@@ -15,9 +15,9 @@ class PersonService
         private AvatarService $avatarService
     ) {}
 
-    public function paginate(int $perPage): LengthAwarePaginator
+    public function paginate(string $name = '', string $order = 'asc', int $perPage): LengthAwarePaginator
     {
-        return $this->personRepository->paginate($perPage);
+        return $this->personRepository->paginate($name, $order, $perPage);
     }
 
     public function findById(int $id): ?Person
@@ -50,10 +50,5 @@ class PersonService
     public function all(): Collection
     {
         return $this->personRepository->all();
-    }
-
-    public function search(PersonDTO $dto, int $perPage): LengthAwarePaginator
-    {
-        return $this->personRepository->search($dto->toEntity(), $perPage);
     }
 }
