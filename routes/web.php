@@ -25,9 +25,8 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::get('/contacts', [ContactController::class, 'index'])->name('contacts.index');
 Route::middleware('auth')->group(function () {
+    Route::get('/contacts', [ContactController::class, 'index'])->name('contacts.index');
     Route::resource('contacts', ContactController::class)->except(['index']);
+    Route::resource('/persons', PersonController::class);
 });
-
-Route::resource('/persons', PersonController::class);
